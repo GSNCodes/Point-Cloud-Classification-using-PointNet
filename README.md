@@ -8,7 +8,7 @@ We will be focussing on classifying point clouds as belonging to one of several 
 
 Shown below is the architecure proposed by the authors of the PointNet paper. This implementation will take up the classification network alone.
 
-![](images/architecture.png)
+![](images/architecture.jpg)
 
 
 ## Reference
