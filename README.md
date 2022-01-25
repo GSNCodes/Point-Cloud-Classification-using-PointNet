@@ -20,5 +20,8 @@ To run the training process on the downloaded dataset:- `python pointnet.py`
 All hyperparameters such as learning rate, number of epochs, batch size, 
 number of classes in the dataset, number of points in the pointcloud can be set in the `config.py` file
 
+## Sample Output
+![](images/sample_output.png)
+
 ## Reference
 [PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation](https://arxiv.org/abs/1612.00593)
