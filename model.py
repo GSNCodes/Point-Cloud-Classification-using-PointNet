@@ -24,6 +24,11 @@ class OrthogonalRegularizer(tf.keras.regularizers.Regularizer):
         xxt = tf.reshape(xxt, (-1, self.num_features, self.num_features))
         return tf.reduce_sum(self.l2reg * tf.square(xxt - self.eye))
 
+    def get_config(self):
+        config = {"num_features": self.num_features, "l2reg": self.l2reg}
+        return config
+
+
 def tnet(inputs, num_features):
 
     bias = tf.keras.initializers.Constant(np.eye(num_features).flatten())

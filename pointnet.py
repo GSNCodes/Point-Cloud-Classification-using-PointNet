@@ -96,13 +96,22 @@ if __name__ == '__main__':
 	model.summary()
 
 	model.compile(
-    loss="sparse_categorical_crossentropy",
-    optimizer=tf.keras.optimizers.Adam(learning_rate=config.LEARNING_RATE),
-    metrics=["sparse_categorical_accuracy"]
-    )
+	loss="sparse_categorical_crossentropy",
+	optimizer=tf.keras.optimizers.Adam(learning_rate=config.LEARNING_RATE),
+	metrics=["sparse_categorical_accuracy"]
+	)
 
-	model.fit(train_dataset, epochs=config.NUM_EPOCHS, validation_data=test_dataset)
+	model_checkpoint_callback  = tf.keras.callbacks.ModelCheckpoint('checkpoint/',monitor="val_sparse_categorical_accuracy", 
+		verbose=0, save_best_only=True, mode="auto", save_freq="epoch")
+
+	model.fit(train_dataset, epochs=config.NUM_EPOCHS, validation_data=test_dataset, callbacks=[model_checkpoint_callback])
 
 	evaluate_visualize_trained_model(model, test_dataset)
 
+	# # Code to load the best model weights and perform inference.
+	# # Uncomment to test it out
+	# trained_model = create_pointnet_model(config.NUM_POINTS, config.NUM_CLASSES)
 
+	# trained_model.load_weights('checkpoint/')
+
+	# evaluate_visualize_trained_model(trained_model, test_dataset)
